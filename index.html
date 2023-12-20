@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lookup tool for Schu's Smash 10K</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://schustats.smashbase.gg/top10kData.js"></script>
+    <script src="./countries.js"></script>
+    <script src="./characters.js"></script>
+    <script src="./betterSchuLookup.js" defer></script>
+</head>
+<body>
+    <select id="countries" onchange="updateTable()">
+        <option value="-">All countries</option>
+        <option disabled></option>
+        <option disabled>Filter by country...</option>
+    </select>
+    <select id="characters" onchange="updateTable()">
+        <option value="-">All characters</option>
+        <option disabled></option>
+        <option disabled>Filter by character...</option>
+    </select>
+    <table id="rankings">
+    </table>
+</body>
+</html>
