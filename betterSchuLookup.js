@@ -3,8 +3,11 @@ let betterData = []
 let countrySelect = document.getElementById('countries')
 let characterSelect = document.getElementById('characters')
 
-let countryRankings = [];
+let countryRankings = []
 countriesObjects.map((c) => countryRankings[c.in] = [])
+
+let characterRankings = []
+characterObjects.map((c) => characterRankings[c.in] = [])
 
 data.map((index, i) => {
     betterData.push({
@@ -15,6 +18,7 @@ data.map((index, i) => {
         country: countriesObjects.find((country) => country.in == index[3]),
     })
 
+    characterRankings[index[2]].push(i)
     countryRankings[index[3]].push(i)
 })
 delete data
@@ -38,23 +42,27 @@ function updateTable() {
     
     var html = `
         <tr>
-            <th>Ranking</th>
-            <th>Tag</th>
-            <th>Character</th>
-            <th>Country</th>
-            <th>Ranking in Country</th>
-            <th>Rating</th>
+            <th class='ranking'>Ranking</th>
+            <th class='tag'>Tag</th>
+            <th class='character'>Character</th>
+            <th class='country'>Country</th>
+            <th class='rating'>Rating</th>
+            <th class='space'></th>
+            ${countrySelect.value != '-' ? `<th class='countryRank'>Ranking in ${countriesObjects.find((x) => x.in == countrySelect.value).out}</th>` : ''}
+            ${characterSelect.value != '-' ? `<th class='characterRank'>Ranking as ${characterObjects.find((x) => x.in == characterSelect.value).out}</th>` : ''}
         </tr>
     `
 
     sample.map((index) => html += `
         <tr>
-            <td>${index.ranking + 1}</td>
-            <td>${index.tag}</td>
-            <td>${index.character.out}</td>
-            <td>${index.country.out}</td>
-            <td>${countryRankings[index.country.in].indexOf(index.ranking) + 1}</td>
-            <td>${index.rating.toFixed(0)}</td>
+            <td class='ranking'>${index.ranking + 1}</td>
+            <td class='tag'>${index.tag}</td>
+            <td class='character'>${index.character.out}</td>
+            <td class='country'>${index.country.out}</td>
+            <td class='rating'>${index.rating.toFixed(0)}</td>
+            <td class='space'></td>
+            ${countrySelect.value != '-' ? `<td class='countryRank'>${countryRankings[index.country.in].indexOf(index.ranking) + 1}</td>` : ''}
+            ${characterSelect.value != '-' ? `<td class='characterRank'>${characterRankings[index.character.in].indexOf(index.ranking) + 1}</td>` : ''}
         </tr>
     `)
 

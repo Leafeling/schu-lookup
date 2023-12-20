@@ -13,17 +13,35 @@
     <script src="./betterSchuLookup.js" defer></script>
 </head>
 <body>
-    <select id="countries" onchange="updateTable()">
-        <option value="-">All countries</option>
-        <option disabled></option>
-        <option disabled>Filter by country...</option>
-    </select>
-    <select id="characters" onchange="updateTable()">
-        <option value="-">All characters</option>
-        <option disabled></option>
-        <option disabled>Filter by character...</option>
-    </select>
-    <table id="rankings">
-    </table>
+    <header class="header">
+        <div class="nav">
+            <b>Schu 10K Lookup Tool</b>
+        </div>
+        <div class="refs">
+            <a target="_blank" href="github.com/leafeling/schu-lookup">GitHub</a>
+        </div>
+    </header>
+    <div class="content">
+        <div class="filters">
+            <div class="filters-sticky">
+                <h1>Filters</h1>
+                <select id="countries" onchange="updateTable()">
+                    <option value="-">All countries</option>
+                    <option disabled></option>
+                    <option disabled>Filter by country...</option>
+                </select>
+                <select id="characters" onchange="updateTable()">
+                    <option value="-">All characters</option>
+                    <option disabled></option>
+                    <option disabled>Filter by character...</option>
+                </select>
+            </div>
+        </div>
+        <div class="rankings">
+            <h1>Rankings</h1>
+            <table id="rankings">
+            </table>
+        </div>
+    </div>
 </body>
 </html>
