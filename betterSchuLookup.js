@@ -3,6 +3,9 @@ let betterData = []
 let countrySelect = document.getElementById('countries')
 let characterSelect = document.getElementById('characters')
 
+let countryRankings = [];
+countriesObjects.map((c) => countryRankings[c.in] = [])
+
 data.map((index, i) => {
     betterData.push({
         ranking: i,
@@ -11,6 +14,8 @@ data.map((index, i) => {
         character: characterObjects.find((character) => character.in == index[2]),
         country: countriesObjects.find((country) => country.in == index[3]),
     })
+
+    countryRankings[index[3]].push(i)
 })
 delete data
 
@@ -37,6 +42,7 @@ function updateTable() {
             <th>Tag</th>
             <th>Character</th>
             <th>Country</th>
+            <th>Ranking in Country</th>
             <th>Rating</th>
         </tr>
     `
@@ -47,6 +53,7 @@ function updateTable() {
             <td>${index.tag}</td>
             <td>${index.character.out}</td>
             <td>${index.country.out}</td>
+            <td>${countryRankings[index.country.in].indexOf(index.ranking) + 1}</td>
             <td>${index.rating.toFixed(0)}</td>
         </tr>
     `)
